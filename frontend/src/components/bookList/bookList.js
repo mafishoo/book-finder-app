@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
-import "./bookList.css"
+import "./bookList.css";
+import NavBar from "../navBar/navBar";
+import Header from '../header/Header.jsx';
 
 function BookList() {
   const [books, setBooks] = useState([
@@ -13,17 +15,22 @@ function BookList() {
   };
 
   return (
-    <div>
-      <h1>Book List</h1>
-      <ul>
-        {books.map(book => (
-          <li key={book.id}>
-            <span>{book.title}</span>
-            <button onClick={() => handleDelete(book.id)}>Delete</button>
-          </li>
-        ))}
-      </ul>
+    <div> 
+    <NavBar/>
+    <Header type="list"/>
+    List
     </div>
+    // <div>
+    //   <h1>Book List</h1>
+    //   <ul>
+    //     {books.map(book => (
+    //       <li key={book.id}>
+    //         <span>{book.title}</span>
+    //         <button onClick={() => handleDelete(book.id)}>Delete</button>
+    //       </li>
+    //     ))}
+    //   </ul>
+    // </div>
   );
 }
 

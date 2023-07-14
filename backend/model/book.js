@@ -25,6 +25,10 @@ const bookSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  isFeatured: {
+    type: String,
+    required: false,
+  },
   createdAt: {
     type: Date,
     default: Date.now,

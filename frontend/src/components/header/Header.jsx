@@ -3,10 +3,12 @@ import "./header.css";
 import { faBook } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-export const Header = () => {
+export const Header = (props) => {
+console.log(props.type)
+
   return (
     <div className="header">
-      <div className="headerContainer">
+      <div className={props.type === "list"? "headerContainer listMode" : "headerContainer"}>
         <div className="headerList">
           <div className="headerListItem active">
             <FontAwesomeIcon icon={faBook} />
@@ -25,6 +27,7 @@ export const Header = () => {
             <span>Books</span>
           </div>
         </div>
+       { props.type !== "list" &&  <>
         <h1 className="headerTitle">
           Unlock the Power of Words - Discover Your Next Literary Adventure!
         </h1>
@@ -35,16 +38,23 @@ export const Header = () => {
         </p>
         <button className="headerButton">sign in / rigester </button>
         <div className="headerSearch">
-          <div className="headerSerchItem">
-            <FontAwesomeIcon icon={faBook} />
+          <div className="headerSearchItem">
+            <FontAwesomeIcon icon={faBook} className="headerIcon" />
+          </div>
+         
+          <div className="headerSearchItem inputButton  ">
             <input
               className="headerSearchInput"
               type="text"
               placeholder="search by title, author,isbn"
             />
-            <button className="searchButton">Search</button>
+           
           </div>
+          <div className="headerSearchItem">
+             <button className="searchButton">Search</button>
+            </div>
         </div>
+        </>}
       </div>
     </div>
   );

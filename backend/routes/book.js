@@ -9,6 +9,7 @@ router.post("/book", async (req, res) => {
     publicationYear: req.body.publicationYear,
     genre: req.body.genre,
     description: req.body.description,
+    isFeatured: req.body.isFeatured,
   });
   const savedBook = await newBook.save();
   res.status(200).json(savedBook);
@@ -19,6 +20,16 @@ router.get("/book/:Id", async (req, res) => {
     console.log(req.params);
     const findBook = await Book.findOne({ Id: req.params.Id });
     res.status(200).json(findBook);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+router.get("/featured", async (req, res) => {
+  try {
+    console.log(req.params);
+    const featuredBook = await Book.findOne({ isFeatured: "true" });
+    res.status(200).json(featuredBook);
   } catch (err) {
     res.status(500).json(err);
   }
