@@ -28,7 +28,7 @@ router.get("/book/:Id", async (req, res) => {
 router.get("/featured", async (req, res) => {
   try {
     console.log(req.params);
-    const featuredBook = await Book.findOne({ isFeatured: "true" });
+    const featuredBook = await Book.find({ isFeatured: "true" });
     res.status(200).json(featuredBook);
   } catch (err) {
     res.status(500).json(err);

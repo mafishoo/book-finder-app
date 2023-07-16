@@ -2,6 +2,7 @@ import React from "react";
 import "./header.css";
 import { faBook } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Link } from "react-router-dom";
 
 export const Header = (props) => {
 console.log(props.type)
@@ -16,7 +17,7 @@ console.log(props.type)
           </div>
           <div className="headerListItem">
             <FontAwesomeIcon icon={faBook} />
-            <span>Books</span>
+            <span> <Link to = "/books/add"> Books </Link></span>
           </div>
           <div className="headerListItem">
             <FontAwesomeIcon icon={faBook} />

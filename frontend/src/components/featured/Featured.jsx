@@ -15,7 +15,7 @@ export const Featured = (props) => {
         <CardMedia
           component="img"
           height="140"
-          image="/static/images/cards/contemplative-reptile.jpg"
+          image={book.img}
           alt="green iguana"
         />
         <CardContent>
@@ -23,14 +23,16 @@ export const Featured = (props) => {
             {book.title}
           </Typography>
           <Typography variant="body2" color="text.secondary">
-            Lizards are a widespread group of squamate reptiles, with over 6,000
-            species, ranging across all continents except Antarctica
+           {book.description}
           </Typography>
         </CardContent>
       </CardActionArea>
       <CardActions>
         <Button size="small" color="primary">
-          Share
+        edit
+        </Button>
+        <Button size="small" color="primary">
+        delete
         </Button>
       </CardActions>
     </Card>

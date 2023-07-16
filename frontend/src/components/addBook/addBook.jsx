@@ -1,8 +1,96 @@
-function AddBook () {
-    return (
-<div> 
-    <h1> Hello! </h1>
-</div>
-    )
+import { Alert, Button, TextField } from "@mui/material";
+
+import Header from "../header/Header";
+import NavBar from "../navBar/navBar";
+import { useState } from "react";
+import "./addBook.css";
+import { useForm } from "../useForm";
+import axios from "axios";
+
+function AddBook() {
+  let res = false;
+  const { formValues, setFormValues, handleChange } = useForm({
+    Id: "",
+    title: "",
+    author: "",
+    publicationYear: "",
+    genre: "",
+    description: "",
+    img: "",
+  });
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    console.log(formValues)
+    try {
+      const response = await axios.post(
+        "http://localhost:5001/api/books/book",
+        formValues
+      );
+      res = response.data;
+      alert('successfully saved')
+    } catch (error) {
+      console.error("Error creating book:", error);
+    }
+  };
+  return (
+    <div>
+      <NavBar />
+      <Header type="list" />
+      <div className="addBookContainer">
+        <h1> Add Book Detail </h1>
+        <form className="classesform" onSubmit={handleSubmit}>
+          <TextField
+            name="Id"
+            label="Id"
+            value={formValues.Id}
+            onChange={handleChange}
+          />
+          <TextField
+            name="title"
+            label="title"
+            value={formValues.title}
+            onChange={handleChange}
+          />
+          <TextField
+            name="author"
+            label="Author"
+            value={formValues.author}
+            onChange={handleChange}
+          />
+          <TextField
+            name="publicationYear"
+            label="Publication Year"
+            value={formValues.publicationYear}
+            onChange={handleChange}
+          />
+
+          <TextField
+            name="genre"
+            label="Genre"
+            value={formValues.genre}
+            onChange={handleChange}
+          />
+          <TextField
+            name="description"
+            label="Description"
+            multiline
+            rows={4}
+            value={formValues.description}
+            onChange={handleChange}
+          />
+          <TextField
+            name="img"
+            label="image url"
+            value={formValues.img}
+            onChange={handleChange}
+          />
+
+          <Button type="submit" variant="contained" color="primary">
+            Submit
+          </Button>
+        </form>
+      </div>
+    </div>
+  );
 }
-export default AddBook
+export default AddBook;

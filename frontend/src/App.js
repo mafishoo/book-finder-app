@@ -22,6 +22,8 @@ function App() {
         <Route path="/books" element={<BookList/>}> </Route>
         <Route path="/books/:id" element={<BookItem/>}> </Route>
         <Route path="/books/add" element={<AddBook/>}> </Route>
+        <Route path="/books/:id/update" element={<AddBook/>}> </Route>
+        <Route path="/books/:id/delete" element={<AddBook/>}> </Route>
       </Routes>
     </BrowserRouter>
   );

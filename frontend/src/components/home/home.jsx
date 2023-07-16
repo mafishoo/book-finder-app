@@ -5,11 +5,11 @@ import Featured from "../featured/Featured";
 import { useState } from "react";
 function Home() {
   const [books, setBooks] = useState([
-    { id: 1, title: 'Book 1' },
-    { id: 2, title: 'Book 2' },
-    { id: 3, title: 'Book 3' }, { id: 1, title: 'Book 1' },
-    { id: 2, title: 'Book 2' },
-    { id: 3, title: 'Book 3' },
+    { id: 1, title: 'Book 1' ,description : 'hello',img : "some image"},
+    { id: 2, title: 'Book 2', description : 'hello', img : "some image" },
+    { id: 3, title: 'Book 3', description : 'hello', img : "some image" }, { id: 1, title: 'Book 1' },
+    { id: 2, title: 'Book 2', description : 'hello' , img : "some image"},
+    { id: 3, title: 'Book 3', description : 'hello', img : "some image" },
   ]);
   return (
     <div >
