@@ -3,22 +3,23 @@ const Book = require("../model/book");
 
 router.post("/book", async (req, res) => {
   const newBook = new Book({
-    Id: req.body.Id,
+    id: req.body.id,
     title: req.body.title,
     author: req.body.author,
     publicationYear: req.body.publicationYear,
     genre: req.body.genre,
     description: req.body.description,
     isFeatured: req.body.isFeatured,
+    img : req.body.img
   });
   const savedBook = await newBook.save();
   res.status(200).json(savedBook);
 });
 
-router.get("/book/:Id", async (req, res) => {
+router.get("/book/:id", async (req, res) => {
   try {
     console.log(req.params);
-    const findBook = await Book.findOne({ Id: req.params.Id });
+    const findBook = await Book.findOne({ _id: req.params.id });
     res.status(200).json(findBook);
   } catch (err) {
     res.status(500).json(err);
@@ -46,9 +47,10 @@ router.get("/bookList", async (req, res) => {
 
 //delete
 
-router.delete("/book/:Id", async (req, res) => {
+router.delete("/book/:id", async (req, res) => {
   try {
-    await Book.findOneAndRemove({ Id: req.params.Id });
+    console.log(req.params);
+    await Book.findOneAndRemove({ _id: req.params.id });
     
     res.status(200).json("The book has been deleted!");
   } catch (err) {
@@ -56,11 +58,11 @@ router.delete("/book/:Id", async (req, res) => {
   }
 });
 
-router.patch("/update/:Id", async (req, res) => {
+router.patch("/update/:id", async (req, res) => {
   try {
-    const id = req.params.Id
+    const id = req.params.id
     console.log(id)
-    const updatedBook = await Book.findOneAndUpdate({ Id : id }, req.body,{new : true} );
+    const updatedBook = await Book.findOneAndUpdate({ _id : id }, req.body,{new : true} );
     
     res.status(200).json(updatedBook);
   } catch (err) {

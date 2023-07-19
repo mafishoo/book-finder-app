@@ -1,7 +1,7 @@
 // id,title,author,cover_img,price,
 const mongoose = require("mongoose");
 const bookSchema = new mongoose.Schema({
-  Id: {
+  id: {
     type: String,
     required: true,
   },
@@ -26,6 +26,10 @@ const bookSchema = new mongoose.Schema({
     required: true,
   },
   isFeatured: {
+    type: String,
+    required: false,
+  },
+  img : {
     type: String,
     required: false,
   },

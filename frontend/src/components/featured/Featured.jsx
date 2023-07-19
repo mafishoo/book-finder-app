@@ -9,15 +9,16 @@ export const Featured = (props) => {
 
 <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
 {props.books.map((book) => (
-<Grid item xs={2} sm={4} md={4}>
-<Card key={book.id} sx={{ maxWidth: 345 }}>
-      <CardActionArea>
-        <CardMedia
-          component="img"
-          height="140"
-          image={book.img}
-          alt="green iguana"
-        />
+  <Grid item xs={12} sm={6} md={4} lg={3}>
+              <Card key={book.Id} sx={{ maxWidth: "100%", height: "100%" }}>
+                <CardActionArea sx={{ height: "100%" }}>
+                  <CardMedia
+                    component="img"
+                    height="100" // Adjust the height to your desired value
+                    width="100%" // Ensure the image fills the entire CardMedia component
+                    image={book.img}
+                    alt="Book cover"
+                  />
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
             {book.title}

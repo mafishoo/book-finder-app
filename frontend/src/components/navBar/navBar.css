@@ -13,7 +13,11 @@ justify-content : center;
     justify-content: space-between;
 }
 .logo{
-    font-weight: 500;
+    font-weight: 300px;
+    color: inherit;
+    height: 10px; 
+    background-image: "/Users/merafasbe/Desktop/September-19/github/book-finder-app/frontend/public/logo.png";
+  
 }
 .navButton{
     margin-left: 20px;

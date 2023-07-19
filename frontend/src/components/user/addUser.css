@@ -1,0 +1,6 @@
+.formbuttons{
+    display: flex;
+    align-items: flex-end;
+    gap: 40px;
+   
+}

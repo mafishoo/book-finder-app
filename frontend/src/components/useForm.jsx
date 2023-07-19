@@ -11,9 +11,14 @@ export const useForm = (initialValue) => {
     });
     console.log(e.target.value);
   };
+
+  const handleReset = () => {
+    setFormValues(initialValue);
+  };
   return {
     formValues,
     setFormValues,
     handleChange,
+    handleReset,
   };
 };

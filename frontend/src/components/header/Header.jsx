@@ -3,29 +3,35 @@ import "./header.css";
 import { faBook } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
+import styled from "@emotion/styled";
 
 export const Header = (props) => {
 console.log(props.type)
 
+const StyledLink = styled(Link)`
+  color: white;
+  margin: 1rem;
+  position: relative;
+`;
   return (
     <div className="header">
       <div className={props.type === "list"? "headerContainer listMode" : "headerContainer"}>
         <div className="headerList">
           <div className="headerListItem active">
             <FontAwesomeIcon icon={faBook} />
-            <span>Books</span>
+            <span><StyledLink  to = "/books"> Books </StyledLink></span>
+          </div>
+          <div className="headerListItem linkStyle">
+            <FontAwesomeIcon icon={faBook} />
+            <span> <StyledLink  to = "/books/add"> Add Books </StyledLink></span>
           </div>
           <div className="headerListItem">
             <FontAwesomeIcon icon={faBook} />
-            <span> <Link to = "/books/add"> Books </Link></span>
+            <span> <StyledLink to = "/books"> Book list </StyledLink></span>
           </div>
           <div className="headerListItem">
             <FontAwesomeIcon icon={faBook} />
-            <span>Books</span>
-          </div>
-          <div className="headerListItem">
-            <FontAwesomeIcon icon={faBook} />
-            <span>Books</span>
+            <span>Contact Us</span>
           </div>
         </div>
        { props.type !== "list" &&  <>

@@ -2,11 +2,12 @@ import { Button, TextField } from "@mui/material";
 
 import Header from "../header/Header";
 import NavBar from "../navBar/navBar";
-import "./addBook.css";
 import { useForm } from "../useForm";
+import "./addUser.css";
 
-function User() {
-  const {formValues,setFormValues,handleChange} = useForm({
+
+function AddUser() {
+  const { formValues, setFormValues, handleChange, handleReset } = useForm({
     name: "",
     email: "",
     password: "",
@@ -18,7 +19,6 @@ function User() {
       <NavBar />
       <Header type="list" />
       <div className="addBookContainer">
-      
         <form className="classesform" onSubmit={handleSubmit}>
           <TextField
             name="name"
@@ -38,13 +38,22 @@ function User() {
             value={formValues.password}
             onChange={handleChange}
           />
-
-          <Button type="submit" variant="contained" color="primary">
-            Submit
-          </Button>
+          <div className="formbuttons">
+            <Button type="submit" variant="contained" color="primary">
+              Submit
+            </Button>
+            <Button
+              onclick={handleReset}
+              type="reset"
+              variant="contained"
+              color="primary"
+            >
+              Reset
+            </Button>
+          </div>
         </form>
       </div>
     </div>
   );
 }
-export default User;
+export default AddUser;

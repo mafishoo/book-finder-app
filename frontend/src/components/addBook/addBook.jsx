@@ -1,16 +1,15 @@
-import { Alert, Button, TextField } from "@mui/material";
+import { Button, TextField } from "@mui/material";
 
 import Header from "../header/Header";
 import NavBar from "../navBar/navBar";
-import { useState } from "react";
 import "./addBook.css";
 import { useForm } from "../useForm";
 import axios from "axios";
 
 function AddBook() {
-  let res = false;
-  const { formValues, setFormValues, handleChange } = useForm({
-    Id: "",
+  
+  const { formValues, setFormValues, handleChange,handleReset } = useForm({
+    id: "",
     title: "",
     author: "",
     publicationYear: "",
@@ -20,14 +19,13 @@ function AddBook() {
   });
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(formValues)
+    console.log(formValues);
     try {
       const response = await axios.post(
         "http://localhost:5001/api/books/book",
         formValues
       );
-      res = response.data;
-      alert('successfully saved')
+      alert("successfully saved");
     } catch (error) {
       console.error("Error creating book:", error);
     }
@@ -40,9 +38,9 @@ function AddBook() {
         <h1> Add Book Detail </h1>
         <form className="classesform" onSubmit={handleSubmit}>
           <TextField
-            name="Id"
-            label="Id"
-            value={formValues.Id}
+            name="id"
+            label="id"
+            value={formValues.id}
             onChange={handleChange}
           />
           <TextField
@@ -84,10 +82,14 @@ function AddBook() {
             value={formValues.img}
             onChange={handleChange}
           />
-
-          <Button type="submit" variant="contained" color="primary">
-            Submit
-          </Button>
+          <div className="formButtons">
+            <Button type="submit" variant="contained" color="primary">
+              Submit
+            </Button>
+            <Button onClick={handleReset} type="reset" variant="contained" color="primary">
+            Reset
+            </Button>
+          </div>
         </form>
       </div>
     </div>

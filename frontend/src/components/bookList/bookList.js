@@ -1,37 +1,102 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from "react";
 import "./bookList.css";
 import NavBar from "../navBar/navBar";
-import Header from '../header/Header.jsx';
+import Header from "../header/Header.jsx";
+import {
+  Button,
+  Card,
+  CardActionArea,
+  CardActions,
+  CardContent,
+  CardMedia,
+  Grid,
+  Typography,
+} from "@mui/material";
+import axios from "axios";
 
 function BookList() {
-  const [books, setBooks] = useState([
-    { id: 1, title: 'Book 1' },
-    { id: 2, title: 'Book 2' },
-    { id: 3, title: 'Book 3' }
-  ]);
+  const [books, setBooks] = useState([]);
 
-  const handleDelete = (id) => {
-    setBooks(books.filter(book => book.id !== id));
+  const handleDelete = async (id) => {
+    try {
+      console.log(id)
+      const response = await axios.delete(
+        `http://localhost:5001/api/books/book/${id}`
+      );
+
+      console.log(response.data);
+   //   setBooks(books.filter((book) => book.Id !== id));
+      window.location.reload();
+    } catch (error) {}
+  };
+
+  useEffect(() => {
+    // Fetch books from the API
+    fetchBooks();
+  }, []);
+  const fetchBooks = async () => {
+    try {
+     
+      const response = await axios.get(
+        "http://localhost:5001/api/books/bookList"
+      );
+      console.log(response.data);
+      setBooks(response.data);
+    } catch (error) {
+      console.error("Error fetching books:", error);
+    }
   };
 
   return (
-    <div> 
-    <NavBar/>
-    <Header type="list"/>
-    List
+    <div>
+      <NavBar />
+      <Header />
+      <div className="bookListContainer">
+        <h1>The Book Store </h1>
+
+        <Grid
+          container
+          spacing={{ xs: 2, md: 3 }}
+          columns={{ xs: 4, sm: 8, md: 12 }}
+        >
+          {books.map((book) => (
+            <Grid item xs={2} sm={4} md={4}>
+              <Card key={book._id} sx={{ maxWidth: '100%', height: '100%' }}>
+                <CardActionArea>
+                  <CardMedia
+                    component="img"
+        height="200" // Adjust the height to your desired value
+        width="100%" // Ensure the image fills the entire CardMedia component
+        image={book.img}
+        alt="Book cover"
+                  />
+                  <CardContent>
+                    <Typography gutterBottom variant="h5" component="div">
+                      {book.title}
+                    </Typography>
+                    <Typography variant="body2" color="text.primary">
+                      {book.description}
+                    </Typography>
+                  </CardContent>
+                </CardActionArea>
+                <CardActions>
+                  <Button size="small" color="primary">
+                    edit
+                  </Button>
+                  <Button
+                    onClick={() =>handleDelete(book._id)}
+                    size="small"
+                    color="primary"
+                  >
+                    Delete
+                  </Button>
+                </CardActions>
+              </Card>
+            </Grid>
+          ))}
+        </Grid>
+      </div>
     </div>
-    // <div>
-    //   <h1>Book List</h1>
-    //   <ul>
-    //     {books.map(book => (
-    //       <li key={book.id}>
-    //         <span>{book.title}</span>
-    //         <button onClick={() => handleDelete(book.id)}>Delete</button>
-    //       </li>
-    //     ))}
-    //   </ul>
-    // </div>
   );
 }
-
 export default BookList;
