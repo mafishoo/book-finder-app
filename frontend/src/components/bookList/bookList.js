@@ -13,6 +13,7 @@ import {
   Typography,
 } from "@mui/material";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 function BookList() {
   const [books, setBooks] = useState([]);
@@ -80,9 +81,11 @@ function BookList() {
                   </CardContent>
                 </CardActionArea>
                 <CardActions>
+                <Link to = {`/books/update/${book._id}`}> 
                   <Button size="small" color="primary">
                     edit
                   </Button>
+                  </Link>
                   <Button
                     onClick={() =>handleDelete(book._id)}
                     size="small"

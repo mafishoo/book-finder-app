@@ -15,7 +15,9 @@ function NavBar() {
           <button onClick={handleClick} className="navButton">
             Register
           </button>
-          <button className="navButton">sign in </button>
+          <Link to = "/users/signIn"> <button className="navButton">sign in </button>
+          
+          </Link>  
         </div>
       </div>
     </div>

@@ -43,7 +43,7 @@ const StyledLink = styled(Link)`
           Subscribe Today for Exclusive Literary Benefits and Discover the Joy
           of Reading
         </p>
-        <button className="headerButton">sign in / rigester </button>
+        <button className="headerButton"> sign in / rigester </button>
         <div className="headerSearch">
           <div className="headerSearchItem">
             <FontAwesomeIcon icon={faBook} className="headerIcon" />

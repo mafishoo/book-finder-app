@@ -4,6 +4,8 @@ import Header from "../header/Header";
 import NavBar from "../navBar/navBar";
 import { useForm } from "../useForm";
 import "./addUser.css";
+import axios from "axios";
+import { Navigate, useNavigate } from "react-router-dom";
 
 
 function AddUser() {
@@ -12,8 +14,21 @@ function AddUser() {
     email: "",
     password: "",
   });
-  const handleSubmit = (e) => {};
-
+  const navigate = useNavigate();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    console.log(formValues);
+    try {
+      const response = await axios.post(
+        "http://localhost:5001/api/users/user",
+        formValues
+      );
+      alert("successfully saved");
+      navigate("/books")
+    } catch (error) {
+      console.error("Error creating book:", error);
+    }
+  };
   return (
     <div>
       <NavBar />

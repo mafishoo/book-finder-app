@@ -61,7 +61,7 @@ router.delete("/book/:id", async (req, res) => {
 router.patch("/update/:id", async (req, res) => {
   try {
     const id = req.params.id
-    console.log(id)
+    console.log('update',id)
     const updatedBook = await Book.findOneAndUpdate({ _id : id }, req.body,{new : true} );
     
     res.status(200).json(updatedBook);
