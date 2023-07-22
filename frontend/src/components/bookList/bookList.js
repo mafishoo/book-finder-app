@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./bookList.css";
 import NavBar from "../navBar/navBar";
 import Header from "../header/Header.jsx";
+import BookItem from "../bookItem/bookItem";
 import {
   Button,
   Card,
@@ -17,16 +18,18 @@ import { Link } from "react-router-dom";
 
 function BookList() {
   const [books, setBooks] = useState([]);
-
+  const handleImageClick = (e) => {
+    console.log("image clicked");
+  };
   const handleDelete = async (id) => {
     try {
-      console.log(id)
+      console.log(id);
       const response = await axios.delete(
         `http://localhost:5001/api/books/book/${id}`
       );
 
       console.log(response.data);
-   //   setBooks(books.filter((book) => book.Id !== id));
+      //   setBooks(books.filter((book) => book.Id !== id));
       window.location.reload();
     } catch (error) {}
   };
@@ -37,7 +40,6 @@ function BookList() {
   }, []);
   const fetchBooks = async () => {
     try {
-     
       const response = await axios.get(
         "http://localhost:5001/api/books/bookList"
       );
@@ -62,15 +64,17 @@ function BookList() {
         >
           {books.map((book) => (
             <Grid item xs={2} sm={4} md={4}>
-              <Card key={book._id} sx={{ maxWidth: '100%', height: '100%' }}>
-                <CardActionArea>
-                  <CardMedia
-                    component="img"
-        height="200" // Adjust the height to your desired value
-        width="100%" // Ensure the image fills the entire CardMedia component
-        image={book.img}
-        alt="Book cover"
-                  />
+              <Card key={book._id} sx={{ maxWidth: "100%", height: "100%" }}>
+              <CardActionArea onClick={() => handleImageClick(book._id)}>
+                  <Link to={`/books/${book._id}`}>
+                    <CardMedia
+                      component="img"
+                      height="200"
+                      width="100%"
+                      image={book.img}
+                      alt="Book cover"
+                    />
+                  </Link>
                   <CardContent>
                     <Typography gutterBottom variant="h5" component="div">
                       {book.title}
@@ -81,13 +85,13 @@ function BookList() {
                   </CardContent>
                 </CardActionArea>
                 <CardActions>
-                <Link to = {`/books/update/${book._id}`}> 
-                  <Button size="small" color="primary">
-                    edit
-                  </Button>
+                  <Link to={`/books/update/${book._id}`}>
+                    <Button size="small" color="primary">
+                      edit
+                    </Button>
                   </Link>
                   <Button
-                    onClick={() =>handleDelete(book._id)}
+                    onClick={() => handleDelete(book._id)}
                     size="small"
                     color="primary"
                   >

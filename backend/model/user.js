@@ -15,7 +15,7 @@ const UserSchema = new mongoose.Schema(
         createdAt: Date,
         updateAt: Date,
     },
-    id :{
+    name :{
         type : String,
         require : true,
     }

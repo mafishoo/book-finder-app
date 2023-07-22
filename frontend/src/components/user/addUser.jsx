@@ -33,7 +33,8 @@ function AddUser() {
     <div>
       <NavBar />
       <Header type="list" />
-      <div className="addBookContainer">
+      <div className="addUserContainer">
+      <h1> Register here </h1>
         <form className="classesform" onSubmit={handleSubmit}>
           <TextField
             name="name"

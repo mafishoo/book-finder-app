@@ -9,7 +9,7 @@ function NavBar() {
     <div className="navBar">
       <div className="navContainer">
       <Link className="logo" to="/">
-          <img className="logoImage" src="/Users/merafasbe/Desktop/September-19/github/book-finder-app/frontend/public/logo.png" alt="Logo" />
+         Book Finder
         </Link>
         <div className="navItems">
           <button onClick={handleClick} className="navButton">

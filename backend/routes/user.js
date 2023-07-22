@@ -3,6 +3,7 @@ const User = require("../model/user");
 
 router.post("/user", async (req, res) => {
   const newUser = new User({
+    name: req.body.name,
     email: req.body.email,
     password: req.body.password,
   });
@@ -28,7 +29,7 @@ router.get("/search", async (req, res) => {
   try {
     const id = req.query.id
     console.log(id)
-    const getAllUsers = await User.find({ id : id });
+    const getAllUsers = await User.find({ _id : id });
     
     res.status(200).json(getAllUsers);
   } catch (err) {
@@ -40,7 +41,7 @@ router.delete("/deleteById", async (req, res) => {
   try {
     const id = req.query.id
     console.log(id)
-    const getAllUsers = await User.findOneAndDelete({ id : id });
+    const getAllUsers = await User.findOneAndDelete({ _id : id });
     
     res.status(200).json(getAllUsers);
   } catch (err) {
@@ -54,7 +55,7 @@ router.patch("/update/:id", async (req, res) => {
   try {
     const id = req.params.id
     console.log(id)
-    const getAllUsers = await User.findOneAndUpdate({ id : id }, req.body,{new : true} );
+    const getAllUsers = await User.findOneAndUpdate({ _id : id }, req.body,{new : true} );
     
     res.status(200).json(getAllUsers);
   } catch (err) {
