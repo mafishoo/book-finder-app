@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import "./header.css";
 import { faBook } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
 import styled from "@emotion/styled";
+import { useForm } from "../useForm";
 
 export const Header = (props) => {
 console.log(props.type)
@@ -13,6 +14,19 @@ const StyledLink = styled(Link)`
   margin: 1rem;
   position: relative;
 `;
+const {handleChange,formValues,setFormValues} = useForm({
+  id: "",
+  name : ""
+})
+
+const [inputValue, setInputValue] = useState('');
+
+  const handleInputChange = (event) => {
+    const newInputValue = event.target.value;
+    setInputValue(newInputValue);
+  };
+
+
   return (
     <div className="header">
       <div className={props.type === "list"? "headerContainer listMode" : "headerContainer"}>
@@ -54,11 +68,14 @@ const StyledLink = styled(Link)`
               className="headerSearchInput"
               type="text"
               placeholder="search by title, author,isbn"
+              name="headerSearchInput"
+              value={inputValue}
+              onChange={handleInputChange}
             />
            
           </div>
           <div className="headerSearchItem">
-             <button className="searchButton">Search</button>
+          <Link to={`/books/${inputValue}`}><button className="searchButton">Search</button></Link>
             </div>
         </div>
         </>}
