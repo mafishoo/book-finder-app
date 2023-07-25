@@ -4,7 +4,7 @@ const cors = require('cors');
 const bookRouter = require("./routes/book")
 const userRouter = require("./routes/user")
 const app = express();
-const port = 5001; // Specify the port number you want to use
+const port = process.env.PORT || 5001; // Specify the port number you want to use
 
 mongoose.connect("mongodb+srv://mafi64:Test1234@employee-app.chwgxva.mongodb.net/?retryWrites=true&w=majority")
 .then(() =>{
