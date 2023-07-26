@@ -5,9 +5,10 @@ import NavBar from "../navBar/navBar";
 import "./addBook.css";
 import { useForm } from "../useForm";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function AddBook() {
-  
+  const navigate = useNavigate();
   const { formValues, setFormValues, handleChange,handleReset, herokuURL } = useForm({
     id: "",
     title: "",
@@ -26,6 +27,8 @@ function AddBook() {
         formValues
       );
       alert("successfully saved");
+      navigate("/books")
+
     } catch (error) {
       console.error("Error creating book:", error);
     }

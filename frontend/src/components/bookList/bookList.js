@@ -31,7 +31,7 @@ function BookList() {
   const handleImageClick = (e) => {
     console.log("image clicked");
   };
-  const navigate = useNavigate();
+  
   const handleDelete = async (id) => {
     const confirmed = window.confirm("Are you sure you want to delete this book?");
 
