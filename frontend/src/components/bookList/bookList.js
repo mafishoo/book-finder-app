@@ -14,7 +14,7 @@ import {
   Typography,
 } from "@mui/material";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "../useForm";
 
 function BookList() {
@@ -31,7 +31,12 @@ function BookList() {
   const handleImageClick = (e) => {
     console.log("image clicked");
   };
+  const navigate = useNavigate();
   const handleDelete = async (id) => {
+    const confirmed = window.confirm("Are you sure you want to delete this book?");
+
+    if (confirmed) {
+      console.log(id);
     try {
       console.log(id);
       const response = await axios.delete(
@@ -41,7 +46,10 @@ function BookList() {
       console.log(response.data);
       //   setBooks(books.filter((book) => book.Id !== id));
       window.location.reload();
-    } catch (error) {}
+    } catch (error) {
+      console.error("error occured", error)
+    }
+  }
   };
 
   useEffect(() => {
