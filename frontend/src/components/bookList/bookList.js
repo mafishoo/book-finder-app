@@ -15,9 +15,19 @@ import {
 } from "@mui/material";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { useForm } from "../useForm";
 
 function BookList() {
   const [books, setBooks] = useState([]);
+  const { formValues, setFormValues, handleChange,handleReset, herokuURL } = useForm({
+    id: "",
+    title: "",
+    author: "",
+    publicationYear: "",
+    genre: "",
+    description: "",
+    img: "",
+  });
   const handleImageClick = (e) => {
     console.log("image clicked");
   };
@@ -25,7 +35,7 @@ function BookList() {
     try {
       console.log(id);
       const response = await axios.delete(
-        `http://localhost:5001/api/books/book/${id}`
+        `${herokuURL}/books/book/${id}`
       );
 
       console.log(response.data);
@@ -41,7 +51,7 @@ function BookList() {
   const fetchBooks = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:5001/api/books/bookList"
+        `${herokuURL}/books/bookList`
       );
       console.log(response.data);
       setBooks(response.data);

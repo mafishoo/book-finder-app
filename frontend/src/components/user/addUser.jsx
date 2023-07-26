@@ -9,7 +9,7 @@ import { Navigate, useNavigate } from "react-router-dom";
 
 
 function AddUser() {
-  const { formValues, setFormValues, handleChange, handleReset } = useForm({
+  const { formValues, setFormValues, handleChange, handleReset,herokuURL } = useForm({
     name: "",
     email: "",
     password: "",
@@ -20,7 +20,7 @@ function AddUser() {
     console.log(formValues);
     try {
       const response = await axios.post(
-        "http://localhost:5001/api/users/user",
+        `${herokuURL}/users/user`,
         formValues
       );
       alert("successfully saved");

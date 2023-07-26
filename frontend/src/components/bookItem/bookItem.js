@@ -18,7 +18,7 @@ import {
 } from "@mui/material";
 
 function BookItem() {
-  const { formValues, setFormValues, handleChange, handleReset } = useForm({
+  const { formValues, setFormValues, handleChange, handleReset, herokuURL } = useForm({
     id: "",
     title: "",
     author: "",
@@ -38,7 +38,7 @@ function BookItem() {
   const fetchBookById = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:5001/api/books/book/${id}`
+        `${herokuURL}/books/book/${id}`
       );
       console.log("data", response.data);
       setFormValues(response.data);
