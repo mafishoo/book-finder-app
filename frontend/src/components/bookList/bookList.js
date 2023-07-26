@@ -43,7 +43,7 @@ function BookList() {
         `${herokuURL}/books/book/${id}`
       );
 
-      console.log(response.data);
+      alert("Deleted ",response.data);
       //   setBooks(books.filter((book) => book.Id !== id));
       window.location.reload();
     } catch (error) {
