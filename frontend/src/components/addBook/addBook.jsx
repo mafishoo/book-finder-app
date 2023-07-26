@@ -42,7 +42,7 @@ function AddBook() {
         <form className="classesform" onSubmit={handleSubmit}>
           <TextField
             name="id"
-            label="id"
+            label="ISBN"
             value={formValues.id}
             onChange={handleChange}
           />
